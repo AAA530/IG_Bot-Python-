@@ -16,10 +16,20 @@ class InstagramBot:
         # options.add_experimental_option("excludeSwitches", ["enable-automation"])
         # options.add_experimental_option('useAutomationExtension', False)
         self.driver = webdriver.Chrome('./chromedriver.exe',options=options)
-        self.driver.get('https://www.instagram.com')
 
+        self.login()
+
+    def login(self):
+            self.driver.get('https://www.instagram.com')
+            time.sleep(3) #wait till site gets load
+
+            self.driver.find_element_by_name('username').send_keys(self.username)
+
+            self.driver.find_element_by_name('password').send_keys(self.password)
+
+            self.driver.find_element_by_xpath('//*[@id="react-root"]/section/main/article/div[2]/div[1]/div/form/div[4]/button').click()
 
 
 
 if __name__ == "__main__":
-    ig_bot = InstagramBot('temp','pass')
+    ig_bot = InstagramBot('temp','password123')
